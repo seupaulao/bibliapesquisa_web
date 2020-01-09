@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>PJLA Apps - Teste JSON servidor</title>
+   <script type="text/javascript" src="bibliapesquisa_web/js/w3.js"></script>
+   <script type="text/javascript" src="bibliapesquisa_web/js/jquery.min.js"></script>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+   <h1 align="center">PJLA Apps</h1>
+
+   <p>Aplicativos e Webapps</p>
+
+   <div>
+      <button onclick="acionar()">Acionar</button>
+   </div>
+
+   <div id="resultado"></div>
+
+   <script>
+      function redirecionar()
+      {
+        window.location="https://stuttering-equator.000webhostapp.com/";
+      }
+      function acionar()
+      {
+        w3.getHttpObject("http://localhost/bibliapesquisa_web/servicos/getTextoBiblia.php?livro=19&capitulo=91", minhaFuncao);
+        //var chato={"saida": {"1": "Aquele que mora no esconderijo do Altíssimo, à sombra do Todo-Poderoso habitará.","2": "Direi ao SENHOR: [Tu és] meu refúgio e minha fortaleza; Deus meu, em quem confio.","3": "Porque ele te livrará do laço do caçador e da peste maligna.","4": "Com suas penas ele te cobrirá, e debaixo de suas asas estarás protegido; a verdade dele é escudo grande e protetor.","5": "Não terás medo do terror da noite, [nem] da flecha que voa de dia;","6": "[Nem] da peste que anda às escuras, [nem] da mortandade que assola ao meio-dia.","7": "Cairão mil ao teu lado, e dez mil à tua direita, [mas] a ti nada alcançará.","8": "Somente verás com teus olhos, e observarás o pagamento dos perversos;","9": "Porque tu fizeste como morada ao SENHOR: o meu refúgio, o Altíssimo.","10": "Mal nenhum te sucederá, nem praga alguma chegará à tua tenda;","11": "Porque ele ordenou aos anjos quanto a ti, para que guardem todos os teus caminhos.","12": "Pelas mãos te levarão, para que não tropeces teu pé em alguma pedra.","13": "Tu pisarás sobre o leão e a cobra; passarás esmagando ao filho do leão e à serpente.","14": "Por ele ter me amado tanto, eu também o livrarei; em alto retiro eu o porei, porque ele conhece o meu nome.","15": "Ele me chamará, e eu o responderei; estarei com ele na angústia; [dela] eu o livrarei, e o honrarei.","16": "Eu o satisfarei com uma longa vida , e lhe mostrarei a minha salvação.",}}; 
+        //alert(chato.length); 
+        //alert(chato["saida"].length); 
+        //alert(chato["saida"]["1"]); 
+      }
+      function minhaFuncao(objeto)
+      {
+         var t = "";
+         var c = 1;
+         while (objeto["saida"][""+c] != undefined)
+         {
+             t = t + ("" + c) + ". " +objeto["saida"][""+c] + "<br>";
+             c = c + 1;  
+         }
+         document.getElementById("resultado").innerHTML=t;
+      }   
+   </script>
+</body>
+</html>

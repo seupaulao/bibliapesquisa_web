@@ -1,2 +1,4 @@
 # bibliapesquisa_web
-biblia pesquisa versão web
+biblia pesquisa versão web - cordova
+
+- unzip basejs.zip

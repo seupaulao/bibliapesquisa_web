@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TESTEPJLA</title>
+        <script type="text/javascript" src="w3.js"></script>
+       </head>
+<body>
+
+<h2>teste op 01</h2>
+<ul id="demo1"><li w3-repeat="textos">{{texto}}</li></ul>
+<h2>teste op 02</h2>
+<ul id="demo3">
+	<li w3-repeat="textos">{{verso}}.&nbsp;{{texto}}</li>
+</ul>
+<h2>teste op 03</h2>
+<ol id="demo5">
+	<li w3-repeat="textos">{{texto}}</li>
+</ol>
+<h2>teste dicionario</h2>
+<div id="demo4">
+   {{palavra}} <br>
+   {{retorno}}
+</id>
+<script>
+w3.getHttpObject("http://localhost/getTextoBiblia.php?ve=BLV&lv=GEN&cp=1&vs=1", myFunction);
+
+function myFunction(myObject) {
+  w3.displayObject("demo1", myObject);
+}
+
+w3.getHttpObject("http://localhost/getTextoBiblia.php?ve=BLV&lv=GEN&cp=1", myFunction2);
+function myFunction2(objeto)
+{
+	w3.displayObject("demo3", objeto);
+	w3.displayObject("demo5", objeto);
+}
+
+w3.getHttpObject("http://localhost/getPalavraDicionario.php?w=exemplo1&lang=pt", myfnc3);
+function myfnc3(resultado)
+{
+	w3.displayObject("demo4", resultado);     
+}
+
+
+</script>
+</body>
+</html>

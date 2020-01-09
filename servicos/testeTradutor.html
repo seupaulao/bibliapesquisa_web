@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TESTEPJLA-TRADUTOR</title>
+        <script type="text/javascript" src="js/w3.js"></script>
+
+       </head>
+<body>
+<h2>teste tradutor</h2>
+<label for="minhafrase">Escreva a frase</label><input type="text" id="minhafrase" maxlength="50" size="45">
+<button onclick="traduzir()">Traduzir</button>
+<div id="ren"></div>
+<div id="res"></div>
+<div id="rfr"></div>
+<script>
+   function traduzir()
+   {
+       traduzirTexto("pt","en",document.getElementById("minhafrase").value);
+       traduzirTexto("pt","es",document.getElementById("minhafrase").value);
+       traduzirTexto("pt","fr",document.getElementById("minhafrase").value);
+   }
+   function traduzirTexto(sl, tl, sourceText)
+   {
+      var sourceLang = sl;
+      var targetLang = tl;
+      var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" 
+            + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(sourceText);
+  
+      if (tl=="en") w3.getHttpObject(url,coletarEn);
+      if (tl=="es") w3.getHttpObject(url,coletarEs);
+      if (tl=="fr") w3.getHttpObject(url,coletarFr);
+      
+   }
+   function coletarEn(json)
+   {
+    document.getElementById("ren").innerHTML=json[0][0][0];
+   }
+   function coletarEs(json)
+   {
+    document.getElementById("res").innerHTML=json[0][0][0];
+   }
+   function coletarFr(json)
+   {
+    document.getElementById("rfr").innerHTML=json[0][0][0];
+   }
+</script>
+</body>
+</html>

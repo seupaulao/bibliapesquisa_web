@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script type="text/javascript" src="w3.js"></script>
+
+	<title>TESTEPJLA</title>
+       </head>
+<body>
+
+<h2>teste</h2>
+<div id="demo"></div>
+<button onclick="next()">Proximo</button>
+
+<script>
+//Funciona dentro do localhost sem server
+var proximo = 0;
+
+function ler()
+{
+  var ab = '{"base1": [{"palavra":"Acometer ", "texto":" Atacar."},{"palavra":"Baço ", "texto":" (olhos) Sem brilho; embaciado, bacento."}]}';
+  var json = JSON.parse(ab);
+  document.getElementById("demo").innerHTML=json.base1[proximo].palavra + " - " + json.base1[proximo].texto;  
+}
+
+function ler1(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                escrever(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+}
+escrever = function(texto)
+{
+   var json = JSON.parse(texto);
+   document.getElementById("demo").innerHTML=json.base1[proximo].palavra + " - " + json.base1[proximo].texto;
+}
+//funciona dentro de um server
+//function ler2(file)
+//{
+//   var fs = require("fs");
+//   var text = fs.readFileSync("./dancers.txt");
+//   var json = JSON.parse(texto);
+//   document.getElementById("demo").innerHTML=json.base1[proximo].palavra + " - " + json.base1[proximo].texto;
+//}
+
+function next()
+{
+  proximo += 1;
+  ler1("https://stuttering-equator.000webhostapp.com/base1.txt");
+}
+
+iniciar = function()
+{
+  ler1("https://stuttering-equator.000webhostapp.com/base1.txt");
+}
+
+iniciar();
+</script>
+
+</body>
+</html>
